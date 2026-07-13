@@ -19,7 +19,7 @@ import SplitText from './components/SplitText'
 import TextType from './components/TextType'
 
 const profile = {
-  heroFirst: '\u4f60\u597d\uff0c\u6211\u662f\u4f55 K',
+  heroFirst: '\u4f60\u597d\uff0c\u6211\u662f\u4f55\u00a0K',
   heroSecond: '\u6ca1\u4e8b\u5c31\u9020\u70b9\u4e1c\u897f\u3002',
   intro: '\u4e00\u4e2a\u95f2\u7740\u6ca1\u4e8b\u5e72\u7684\u5927\u4e09\u5b66\u751f\u3002\u6211\u628a\u6a21\u7cca\u7684\u60f3\u6cd5\u505a\u6210\u7f51\u9875\u3001\u5de5\u5177\u548c\u53ef\u4ee5\u70b9\u7684\u5c0f\u4e16\u754c\u3002',
   cta: '\u4e00\u8d77\u6574\u70b9',
@@ -38,7 +38,14 @@ const projects = {
 
 type ProjectKey = keyof typeof projects
 const projectKeys = Object.keys(projects) as ProjectKey[]
-const navKeys: ProjectKey[] = ['web', 'software', 'hardware', 'creative']
+const navKeys: ProjectKey[] = ['web', 'software', 'hardware', 'creative', 'player']
+const projectProof: Record<ProjectKey, readonly [string, string]> = {
+  web: ['SCOPE / 动漫风天气体验', 'BUILT / 城市搜索、天气数据、动态背景'],
+  software: ['SCOPE / 纸张排版工具', 'BUILT / 手写风格、PDF 导出、前后端流程'],
+  hardware: ['SCOPE / 公开记录系统', 'BUILT / 账本、照片墙、管理后台'],
+  creative: ['SCOPE / 高数拟人视觉小说', 'BUILT / 剧情、存档、回档、题库'],
+  player: ['SCOPE / 双视频播放实验', 'BUILT / 双路媒体与同步播放流程'],
+}
 
 function App() {
   const [active, setActive] = useState<ProjectKey>('web')
@@ -71,7 +78,10 @@ function App() {
           <SplitText className="hero-line hero-line--serif" tag="span" text={profile.heroSecond} delay={29} duration={1.05} textAlign="left" from={{ opacity: 0, y: 72, rotateX: -52 }} to={{ opacity: 1, y: 0, rotateX: 0 }} />
         </h1>
         <BlurText className="intro" text={profile.intro} delay={22} direction="bottom" stepDuration={0.4} rootMargin="-30px" />
-        <a className="round-link" href="#web">works</a>
+        <div className="hero-actions">
+          <a className="round-link" href="#projects">works</a>
+          <a className="ramble-entry" href="/ramblings"><span>随便瞎说</span><b>随笔 / 照片 / 所见所想</b></a>
+        </div>
       </div>
       <a className="hero-identity" href={profile.github} target="_blank" rel="noreferrer"><img src={profile.avatar} alt="He K GitHub avatar" /><span>HELH1723-LANG<br />GITHUB PROFILE</span></a>
       <p className="hero-note">2026 / 01 - 04<br />Selected work</p>
@@ -79,12 +89,13 @@ function App() {
 
     <ProjectDeck />
 
-    <section className="project-section web-section" data-work="web" id="web"><div className="visual"><DotGrid dotSize={3} gap={17} baseColor="#3f4540" activeColor="#c5f554" proximity={135} shockRadius={160} shockStrength={4} /></div><ProjectCopy type="01 / WEB EXPERIMENT" project={projects.web} number="(A)" /><p className="section-caption">Browser-born worlds<br />for changing skies.</p></section>
-    <section className="project-section software-section" data-work="software" id="software"><div className="software-orbit" aria-hidden="true"><span>*</span><span>*</span><span>*</span></div><ProjectCopy type="02 / LOCAL TOOL" project={projects.software} number="(B)" /><div className="software-grid" aria-hidden="true" /><p className="section-caption">Useful tools<br />for hands and paper.</p></section>
-    <section className="project-section hardware-section" data-work="hardware" id="hardware"><div className="visual hardware-visual"><Ferrofluid colors={['#0a0a09', '#c5f554', '#63732e']} speed={0.55} scale={1.2} turbulence={1.9} fluidity={1.5} glow={0.5} mouseInteraction /></div><ProjectCopy type="03 / FULL-STACK SYSTEM" project={projects.hardware} number="(C)" /><p className="section-caption">Care made visible<br />through a small system.</p></section>
-    <section className="project-section creative-section" data-work="creative" id="creative"><div className="visual creative-visual"><Aurora colorStops={['#0b0b0a', '#c5f554', '#63732e']} amplitude={1.05} blend={0.7} speed={0.65} /></div><ProjectCopy type="04 / CREATIVE GAME" project={projects.creative} number="(D)" /><p className="section-caption">Math, story and<br />slightly unreasonable ideas.</p></section>
+    <section className="project-section web-section" data-work="web" id="web"><div className="visual"><DotGrid dotSize={3} gap={17} baseColor="#3f4540" activeColor="#c5f554" proximity={135} shockRadius={160} shockStrength={4} /></div><ProjectCopy type="01 / WEB EXPERIMENT" project={projects.web} proof={projectProof.web} number="(A)" /><p className="section-caption">Browser-born worlds<br />for changing skies.</p></section>
+    <section className="project-section software-section" data-work="software" id="software"><div className="software-orbit" aria-hidden="true"><span>*</span><span>*</span><span>*</span></div><ProjectCopy type="02 / LOCAL TOOL" project={projects.software} proof={projectProof.software} number="(B)" /><div className="software-grid" aria-hidden="true" /><p className="section-caption">Useful tools<br />for hands and paper.</p></section>
+    <section className="project-section hardware-section" data-work="hardware" id="hardware"><div className="visual hardware-visual"><Ferrofluid colors={['#0a0a09', '#c5f554', '#63732e']} speed={0.55} scale={1.2} turbulence={1.9} fluidity={1.5} glow={0.5} mouseInteraction /></div><ProjectCopy type="03 / FULL-STACK SYSTEM" project={projects.hardware} proof={projectProof.hardware} number="(C)" /><p className="section-caption">Care made visible<br />through a small system.</p></section>
+    <section className="project-section creative-section" data-work="creative" id="creative"><div className="visual creative-visual"><Aurora colorStops={['#0b0b0a', '#c5f554', '#63732e']} amplitude={1.05} blend={0.7} speed={0.65} /></div><ProjectCopy type="04 / CREATIVE GAME" project={projects.creative} proof={projectProof.creative} number="(D)" /><p className="section-caption">Math, story and<br />slightly unreasonable ideas.</p></section>
+    <section className="project-section player-section" data-work="player" id="player"><div className="visual player-visual" aria-hidden="true" /><ProjectCopy type="05 / TWO-UP PLAYER" project={projects.player} proof={projectProof.player} number="(E)" /><p className="section-caption">Two screens.<br />One small experiment.</p></section>
 
-    <footer id="contact"><BlurText className="eyebrow" text="IF YOU HAVE A WEIRD IDEA, I AM ALL EARS." delay={45} direction="top" stepDuration={0.42} /><a className="contact-link" href={profile.github} target="_blank" rel="noreferrer">{profile.cta} <em>{profile.ctaEmphasis}</em> -&gt;</a><div className="footer-meta"><span>HE K / THIRD-YEAR STUDENT</span><span>WEB / TOOLS / SYSTEMS / SMALL WORLDS</span><a href="#home">Back to top -&gt;</a></div></footer>
+    <footer id="contact"><BlurText className="eyebrow" text="IF YOU HAVE A WEIRD IDEA, I AM ALL EARS." delay={45} direction="top" stepDuration={0.42} /><a className="contact-link" href={profile.github} target="_blank" rel="noreferrer"><span>{profile.cta}</span><br /><em>{profile.ctaEmphasis}</em> -&gt;</a><div className="footer-meta"><span>HE K / THIRD-YEAR STUDENT</span><span>WEB / TOOLS / SYSTEMS / SMALL WORLDS</span><a href="#home">Back to top -&gt;</a></div></footer>
   </main>
 }
 
@@ -115,13 +126,14 @@ function ProjectDeck() {
   </section>
 }
 
-function ProjectCopy({ type, project, number }: { type: string; project: readonly string[]; number: string }) {
+function ProjectCopy({ type, project, proof, number }: { type: string; project: readonly string[]; proof: readonly [string, string]; number: string }) {
   const external = project[3].startsWith('http')
   return <div className="project-copy">
     <BlurText className="project-type" text={type} delay={42} direction="top" stepDuration={0.36} rootMargin="-80px" />
     <p className="project-number">{number}</p>
     <SplitText className="project-title" tag="h2" text={project[0]} delay={24} duration={0.9} splitType="chars" textAlign="left" from={{ opacity: 0, y: 58, rotateX: -35 }} to={{ opacity: 1, y: 0, rotateX: 0 }} threshold={0.22} rootMargin="-65px" />
     <BlurText className="project-meta" text={project[1]} delay={38} direction="bottom" stepDuration={0.32} rootMargin="-70px" />
+    <dl className="project-proof"><div><dt>SCOPE</dt><dd>{proof[0].replace('SCOPE / ', '')}</dd></div><div><dt>BUILT</dt><dd>{proof[1].replace('BUILT / ', '')}</dd></div></dl>
     <a className="project-link" href={project[3]} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>{project[2]}</a>
   </div>
 }

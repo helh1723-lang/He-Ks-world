@@ -3,4 +3,5 @@
 /.vinext/
 /dist/
 /.wrangler/
+/work/
 .env*

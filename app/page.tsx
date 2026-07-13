@@ -1,5 +1,5 @@
-import App from "../src/App";
+import ClientPage from "./client-page";
 
 export default function Home() {
-  return <App />;
+  return <ClientPage />;
 }

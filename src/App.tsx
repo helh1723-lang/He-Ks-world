@@ -18,6 +18,8 @@ import SplitText from './components/SplitText'
 // @ts-ignore
 import TextType from './components/TextType'
 
+const baseUrl = import.meta.env.BASE_URL
+
 const profile = {
   heroFirst: '\u4f60\u597d\uff0c\u6211\u662f\u4f55\u00a0K',
   heroSecond: '\u6ca1\u4e8b\u5c31\u9020\u70b9\u4e1c\u897f\u3002',
@@ -80,7 +82,7 @@ function App() {
         <BlurText className="intro" text={profile.intro} delay={22} direction="bottom" stepDuration={0.4} rootMargin="-30px" />
         <div className="hero-actions">
           <a className="round-link" href="#projects">works</a>
-          <a className="ramble-entry" href="/ramblings"><span>随便瞎说</span><b>随笔 / 照片 / 所见所想</b></a>
+          <a className="ramble-entry" href={`${baseUrl}ramblings/`}><span>随便瞎说</span><b>随笔 / 照片 / 所见所想</b></a>
         </div>
       </div>
       <a className="hero-identity" href={profile.github} target="_blank" rel="noreferrer"><img src={profile.avatar} alt="He K GitHub avatar" /><span>HELH1723-LANG<br />GITHUB PROFILE</span></a>

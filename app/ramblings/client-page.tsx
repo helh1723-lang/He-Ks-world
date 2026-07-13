@@ -6,6 +6,8 @@ import BlurText from "../../src/components/BlurText";
 // @ts-ignore
 import Dither from "../../src/components/Dither";
 
+const baseUrl = import.meta.env.BASE_URL;
+
 const notes = [
   {
     date: "2026 / 04 / 18",
@@ -13,7 +15,7 @@ const notes = [
     title: "先做出来，再慢慢想明白",
     excerpt: "很多东西一开始只是一个说不清楚的念头。真正动手以后，问题才会从一团雾，变成一个个可以解决的小零件。",
     body: "这里先放了一篇示例随笔。以后可以把它替换成你的真实记录：一段开发过程、一张路上拍的照片，或者某个突然想通的瞬间。",
-    image: "/ramblings/night-screen.png",
+    image: `${baseUrl}ramblings/night-screen.png`,
     alt: "个人展示页的银河首屏",
     caption: "A SCREEN FULL OF STARS / 2026",
   },
@@ -23,7 +25,7 @@ const notes = [
     title: "颜色不是装饰，是情绪开关",
     excerpt: "同一个界面换一种颜色，像是把房间里的灯重新打开。内容没有变，但人看它的心情已经不同了。",
     body: "这个版块适合放短观察，不需要把每件事都讲成完整道理。照片负责留下当时的光线，文字只负责留下当时的想法。",
-    image: "/ramblings/lime-interface.png",
+    image: `${baseUrl}ramblings/lime-interface.png`,
     alt: "荧光绿色的 PaperHand 项目界面",
     caption: "LIME MODE / PAPERHAND",
   },
@@ -33,7 +35,7 @@ const notes = [
     title: "留下过程，比留下答案更有意思",
     excerpt: "完成品总是干净的，真正有意思的往往是那些被删掉的版本、绕过的远路，以及后来想想仍然觉得好笑的决定。",
     body: "随笔不必按项目分类。你可以记录一次失败、一个画面、一句听来的话，甚至只放一张照片和两行说明。",
-    image: "/ramblings/stacked-projects.png",
+    image: `${baseUrl}ramblings/stacked-projects.png`,
     alt: "层叠排列的项目卡片",
     caption: "PROJECT DECK / WORK IN PROGRESS",
   },
@@ -52,9 +54,9 @@ export default function RamblingsPage() {
 
   return <main className="ramblings-page">
     <header className="ramblings-topbar">
-      <a className="wordmark" href="/" aria-label="返回 He K 个人展示页"><span>HE K</span><i>/</i>MAKES</a>
+      <a className="wordmark" href={baseUrl} aria-label="返回 He K 个人展示页"><span>HE K</span><i>/</i>MAKES</a>
       <span>随便瞎说 / RAMBLINGS</span>
-      <a className="ramblings-back" href="/">返回首页 -&gt;</a>
+      <a className="ramblings-back" href={baseUrl}>返回首页 -&gt;</a>
     </header>
 
     <section className="ramblings-hero">
@@ -94,7 +96,7 @@ export default function RamblingsPage() {
 
     <footer className="ramblings-footer">
       <p>THAT IS ALL FOR NOW.</p>
-      <a href="/">看完了，回去继续造东西。 -&gt;</a>
+      <a href={baseUrl}>看完了，回去继续造东西。 -&gt;</a>
     </footer>
   </main>;
 }
